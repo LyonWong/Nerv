@@ -1,0 +1,22 @@
+{
+    "name": "nerv/nerv",
+    "description": "A slim PHP framework.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LyonWong",
+            "email": "lyon.wong@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/",
+            "core\\": "core/"
+        },
+        "files": [
+            "core\\utils.php"
+        ]
+    }
+}

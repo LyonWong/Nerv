@@ -5,9 +5,9 @@ namespace core;
 define('PATH_ROOT', dirname(__DIR__));
 
 
-include_once 'util.php';
+// include_once 'utils.php';
 
-spl_autoload_register('_autoload');
+// spl_autoload_register('_autoload');
 
 
 class Boot
@@ -43,14 +43,4 @@ class Boot
         }
         return output($result);
     }
-
-    /**
-     * Autoload follow Psr-4
-     *
-     * @param string $class
-     * @return void
-     */
-
 }
-
-
