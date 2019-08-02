@@ -2,7 +2,7 @@
 
 use core\{Boot, Router, Input, Output};
 
-function _autoload(string $class)
+function autoload_nerv(string $class)
 {
     $file = realpath(PATH_ROOT . '/' . str_replace('\\', '/', $class) . '.php');
     if ($file) {
@@ -27,5 +27,5 @@ function input($data):Input
 
 function output($data):Output
 {
-    return new Output($data);
+    return ($data instanceof Output) ? $data : new Output($data);
 }

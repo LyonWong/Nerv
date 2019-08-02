@@ -4,11 +4,13 @@ namespace core;
 
 define('PATH_ROOT', dirname(__DIR__));
 
+require_once 'utils.php';
 
-// include_once 'utils.php';
+spl_autoload_register('autoload_nerv');
 
-// spl_autoload_register('_autoload');
-
+if ($autoload = realpath(PATH_ROOT . '/vendor/autoload.php')) {
+    require_once $autoload;
+}
 
 class Boot
 {

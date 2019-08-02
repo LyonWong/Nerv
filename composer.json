@@ -9,14 +9,7 @@
             "email": "lyon.wong@outlook.com"
         }
     ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "app\\": "app/",
-            "core\\": "core/"
-        },
-        "files": [
-            "core\\utils.php"
-        ]
+    "require": {
+        "php": ">=7.1"
     }
 }

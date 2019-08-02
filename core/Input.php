@@ -17,27 +17,27 @@ namespace core;
  */
 class Input
 {
-    private $vars=[];
+    protected $attr=[];
 
-    private $METHOD;
+    protected $METHOD;
 
-    private $URI;
+    protected $URI;
 
-    private $HOST;
+    protected $HOST;
 
-    private $PORT;
+    protected $PORT;
 
-    private $_GET = [];
+    protected $_GET = [];
 
-    private $_POST = [];
+    protected $_POST = [];
 
-    private $_COOKIE = [];
+    protected $_COOKIE = [];
 
-    private $_FILES = [];
+    protected $_FILES = [];
 
-    private $_SERVER = [];
+    protected $_SERVER = [];
 
-    private $_INPUT;
+    protected $_INPUT;
 
     public function __construct($data)
     {
@@ -75,9 +75,12 @@ class Input
         }
     }
 
-    public function var($name)
+    public function attr($key, $value=null)
     {
-        return $this->vars[$name] ?? null;
+        if ($value) {
+            $this->attr[$key] = $value;
+        }
+        return $this->attr[$key] ?? null;
     }
 
     public function header($name)
