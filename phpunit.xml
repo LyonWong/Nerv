@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="core/boot.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="core">
+            <directory suffix="Test.php">./test/core</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <server name="ENV" value="test"/>
+    </php>
+</phpunit>

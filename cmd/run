@@ -1,0 +1,5 @@
+#!/bin/bash
+PATH_ROOT=`cd $(dirname $0)/..;pwd`
+domain=$1
+source $PATH_ROOT/$domain/config/env
+$PHP $PATH_ROOT/core/cli.php $*

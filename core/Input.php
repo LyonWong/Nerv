@@ -51,7 +51,7 @@ class Input
             'REQUEST_METHOD' => 'METHOD',
         ];
         foreach ($alias as $from => $to) {
-            $this->$to = $this->_SERVER[$from];
+            $this->$to = $this->$to ?? $this->_SERVER[$from] ?? null;
         }
     }
 
