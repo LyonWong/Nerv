@@ -58,3 +58,12 @@ server {
    - `/` => `control\_.php`
    - `/home/` => `control\home\_.php`
    - `/info` => `control\info.php`
+
+
+## 命令行
+
+### cmd/run
+Usage:    `cmd/run app:$control`
+
+- core
+  - `core:/make-config`: make config caceh

@@ -1,3 +1,6 @@
+.*
+!*/.gitignore
+!.env.example
 /vendor
-*/config/env
-.phpunit.result.cache
+!/config/default
+composer.lock

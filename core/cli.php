@@ -2,11 +2,11 @@
 
 require_once __DIR__.'/boot.php';
 
-$domain = $argv[1];
+[$scope, $URI] = explode(':', $argv[1], 2);
 
 $data = [
     'METHOD' => 'CLI',
-    'URI' => $argv[2],
+    'URI' => $URI,
     '_CLI' => []
 ];
 foreach ($argv as $v) {
@@ -16,5 +16,5 @@ foreach ($argv as $v) {
     }
 }
 
-boot($domain)->run(input($data))->send();
+boot($scope)->run(input($data))->send();
 echo PHP_EOL;

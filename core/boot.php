@@ -6,26 +6,37 @@ define('PATH_ROOT', dirname(__DIR__));
 
 require_once 'utils.php';
 
-spl_autoload_register('autoload_nerv');
+spl_autoload_register(function ($class) {
+    $file = realpath(PATH_ROOT . '/' . str_replace('\\', '/', $class) . '.php');
+    if ($file) {
+        require_once $file;
+    }
+});
+
 
 if ($autoload = realpath(PATH_ROOT . '/vendor/autoload.php')) {
     require_once $autoload;
 }
 
+$_ENV = array_merge(parse_ini_file(PATH_ROOT . '/.env'), $_ENV);
+
 class Boot
 {
-    private $domain;
+    private $app;
 
-    public function __construct(string $domain)
+    public function __construct(string $app)
     {
-        $this->domain = $domain;
+        $this->app = $app;
+        foreach (glob(PATH_ROOT . "/$app/*.php") as $file) {
+            include_once $file;
+        }
     }
 
     public function run(Input $Input = null): Output
     {
         $Input = $Input ?: input(array_merge($GLOBALS, $_SERVER));
         // 解析路由
-        $route = router($this->domain)->resolve($Input->URI);
+        $route = router($this->app)->resolve($Input->URI);
         // 生成控制器
         $controller = new $route['ctrl']($Input);
         // 尝试执行前置方法
