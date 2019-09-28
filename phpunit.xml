@@ -14,7 +14,7 @@
         </testsuite>
     </testsuites>
     <php>
-        <server name="ENV" value="testing"/>
+        <server name="env" value="testing"/>
         <env name="CONFIG_BLOCK" value="testing,default"/>
         <env name="CONFIG_CACHE" value="false"/>
     </php>

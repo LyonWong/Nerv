@@ -18,7 +18,8 @@ if ($autoload = realpath(PATH_ROOT . '/vendor/autoload.php')) {
     require_once $autoload;
 }
 
-$_ENV = array_merge(parse_ini_file(PATH_ROOT . '/.env'), $_ENV);
+$env = isset($_SERVER['env']) ? ".env.$_SERVER[env]" : '.env';
+$_ENV = array_merge(parse_ini_file(PATH_ROOT . "./$env"), $_ENV);
 
 class Boot
 {

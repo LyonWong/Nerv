@@ -49,10 +49,31 @@ server {
     app/
     |- control/ 控制器
     |- public/ 公共入口
+    config/
     core/ 框架核心
+    .env 环境变量
 
+## 配置
 
- ## 路由
+### 环境变量
+- `.env` 为默认环境变量文件
+- 当存在`$_SERVER['env']`时，将从`.env.$_SERVER[env]`中读取
+- 指定当前运行环境
+  - nginx: `fastcgi_params env dev`
+  - cli: `env=dev php cmd`
+  - phpunit: `<server name="env" value="testing"/>`
+
+### 配置机制
+- 配置分为多个`block`，由环境变量`CONFIG_BLOCK`指定优先顺序
+- `block`中的`.ini`文件由`parse_ini_file`解析，支持section分段
+- 建议只将`default`配置同步到版本库，本地自己保留`locale`或`testing`配置
+- 以`config(path/file.section.item, deafult)`获取配置项，路径中请勿使用`.`
+  - `path/file`为配置文件相对于`block`的路径
+  - `section`, `item` 非必须，例如可通过`config(path/file)`以数组形式获取整个配置文件
+- 可通过环境变量`CONFIG_CACHE`控制是否尝试读取缓存，或指定配置缓存路径
+- 可通过`cmd/run core:/make-config`生成配置缓存
+ 
+## 路由
  - `URI`中的filepath与control目录层级对应
  - `URI`中basename以`-`分隔，第一部分为controller文件名，剩余部分作为controller`run`方法的参数，当`URI`以`/`结尾时，basename默认为`_`，例：
    - `/` => `control\_.php`
